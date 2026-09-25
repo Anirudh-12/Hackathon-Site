@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - DOGFOOD 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="/projects" class="logo">DOGFOOD.</a>
+            <nav>
+                <a href="/projects" style="color: var(--text-primary); text-decoration: none; font-weight: 500;">Gallery</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h1>Project Gallery</h1>
+        <div class="gallery-grid">
+            {% for p in projects %}
+            <div class="project-card">
+                <h3 class="project-title">{{ p.title }}</h3>
+                <div class="project-track">{{ p.track.name if p.track else 'General' }}</div>
+                <div class="project-summary">{{ p.summary }}</div>
+                <div class="project-footer">
+                    <span class="date-submitted">{{ p.submitted_at.strftime('%b %d, %Y') }}</span>
+                    <a href="{{ p.repo_url }}" target="_blank" class="view-btn">Repository</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

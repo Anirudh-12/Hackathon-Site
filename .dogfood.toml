@@ -1,0 +1,19 @@
+[portal]
+base_url = "http://localhost:8080"
+
+[tiers]
+claimed = ["T1", "T2"]
+pitch = "A beautiful, premium hackathon platform."
+
+[auth]
+organizer   = "Cookie: session=org_1"
+judge_a     = "Cookie: session=jdg_1"
+judge_b     = "Cookie: session=jdg_2"
+participant = "Cookie: session=prt_1"
+
+[routes]
+gallery      = "/projects"
+submit       = "/projects/new"
+judge_scores = "/api/judge/scores"
+peer_scores  = "/api/judge/scores?judge=jdg_1"
+csv_export   = "/api/export.csv"
