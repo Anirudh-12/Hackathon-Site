@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Hackforge{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="shell-app">
+
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="/" class="brand">◈ Hackforge</a>
+      </div>
+
+      <nav class="sidebar-nav">
+        {% block sidebar %}{% endblock %}
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <span class="sidebar-user-name">{{ user.name }}</span>
+          <span class="badge badge-role">{{ user.role }}</span>
+        </div>
+        <a href="/logout" class="sidebar-signout">Sign out</a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="app-content">
+      <header class="app-topbar">
+        <div class="app-breadcrumb">{% block breadcrumb %}{% endblock %}</div>
+        <div class="app-topbar-right">
+          {% block topbar_actions %}{% endblock %}
+        </div>
+      </header>
+
+      {% if flash_message %}
+      <div class="flash flash-{{ flash_type or 'success' }}">{{ flash_message }}</div>
+      {% endif %}
+
+      <main class="app-main">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

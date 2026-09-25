@@ -1,0 +1,33 @@
+{% extends "_base_public.html" %}
+{% block title %}Hackforge — Run your hackathon without the spreadsheet chaos{% endblock %}
+
+{% block content %}
+<div class="landing">
+  <div class="landing-hero">
+    <h1 class="landing-headline">Run your hackathon<br>without the spreadsheet chaos.</h1>
+    <p class="landing-sub">Open-source hackathon submission and judging platform.<br>Self-host it. Own the data.</p>
+    <div class="landing-ctas">
+      <a href="/register" class="btn btn-primary">Create account</a>
+      <a href="/projects" class="btn btn-secondary">Explore projects</a>
+    </div>
+  </div>
+  <div class="landing-features">
+    <div class="feature-item">
+      <span class="feature-label">submissions</span>
+      <span class="feature-desc">Teams submit and edit until the deadline. Then it locks.</span>
+    </div>
+    <div class="feature-item">
+      <span class="feature-label">judging</span>
+      <span class="feature-desc">Weighted rubric, isolated scores, documented normalization.</span>
+    </div>
+    <div class="feature-item">
+      <span class="feature-label">voting</span>
+      <span class="feature-desc">Community voting with anti-abuse and randomized ballots.</span>
+    </div>
+    <div class="feature-item">
+      <span class="feature-label">results</span>
+      <span class="feature-desc">Publish when you're ready. Export everything as CSV.</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

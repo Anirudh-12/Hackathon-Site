@@ -1,0 +1,49 @@
+{% extends "_base_public.html" %}
+{% block title %}Gallery — {{ event.name if event else "Hackforge" }}{% endblock %}
+
+{% block content %}
+<div class="gallery-page">
+  <div class="gallery-header">
+    <div>
+      <h1 class="page-title">{{ event.name if event else "Projects" }}</h1>
+      <p class="page-meta">{{ projects|length }} projects
+        {%- if event %} · {{ event.tracks|length if event.tracks else "" }} tracks{% endif %}
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-controls">
+    <input
+      id="gallery-search"
+      class="input input-search"
+      type="search"
+      placeholder="Search projects..."
+      value="{{ search_query }}"
+    >
+    <div class="filter-chips">
+      <a href="/projects" class="chip {% if not selected_track %}chip-active{% endif %}">All tracks</a>
+      {% for t in tracks %}
+      <a href="/projects?track={{ t.id }}" class="chip {% if selected_track == t.id %}chip-active{% endif %}">{{ t.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="gallery-grid" id="gallery-grid">
+    {% for p in projects %}
+    <a href="/projects/{{ p.id }}" class="project-card" data-title="{{ p.title|lower }}">
+      <div class="project-card-track-bar" style="background: var(--track-{{ loop.index % 8 }})"></div>
+      <div class="project-card-body">
+        <h3 class="project-card-title">{{ p.title }}</h3>
+        <p class="project-card-summary">{{ p.summary }}</p>
+        <div class="project-card-meta">
+          <span class="badge">{{ p.track.name if p.track else "General" }}</span>
+          <span class="project-card-team">{{ p.team.name if p.team else "" }}</span>
+        </div>
+      </div>
+    </a>
+    {% else %}
+    <p class="empty-state">No projects found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

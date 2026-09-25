@@ -1,0 +1,34 @@
+{% extends "_base_public.html" %}
+{% block title %}Sign in — Hackforge{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="auth-card">
+    <h1 class="auth-title">Sign in</h1>
+    <p class="auth-sub">Or <a href="/register">create an account</a></p>
+
+    {% if error %}
+    <div class="flash flash-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/login" class="auth-form">
+      <input type="hidden" name="next" value="{{ next }}">
+
+      <label class="form-label" for="email">Email</label>
+      <input id="email" name="email" type="email" class="input" required autofocus placeholder="you@example.com">
+
+      <label class="form-label" for="password">Password</label>
+      <input id="password" name="password" type="password" class="input" required placeholder="••••••••">
+
+      <button type="submit" class="btn btn-primary btn-full">Sign in</button>
+    </form>
+
+    <div class="auth-hint">
+      <p class="text-muted">Test accounts — any password works:</p>
+      <code>organizer@hackforge.dev</code><br>
+      <code>participant@hackforge.dev</code><br>
+      <code>judge_a@hackforge.dev</code>
+    </div>
+  </div>
+</div>
+{% endblock %}

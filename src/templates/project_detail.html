@@ -1,0 +1,54 @@
+{% extends "_base_public.html" %}
+{% block title %}{{ project.title }} — Hackforge{% endblock %}
+
+{% block content %}
+<div class="detail-page">
+  <a href="/projects" class="back-link">← Back to gallery</a>
+
+  <div class="detail-header">
+    <h1 class="detail-title">{{ project.title }}</h1>
+    <div class="detail-meta">
+      <span class="badge">{{ project.track.name if project.track else "General" }}</span>
+      <span class="text-muted">·</span>
+      <span class="text-muted">{{ project.team.name if project.team else "No team" }}</span>
+      <span class="text-muted">·</span>
+      <span class="text-muted">Submitted {{ project.submitted_at.strftime("%b %d, %Y") if project.submitted_at else "—" }}</span>
+    </div>
+  </div>
+
+  <div class="detail-links">
+    {% if project.repo_url %}
+    <a href="{{ project.repo_url }}" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+    {% endif %}
+    {% if project.demo_url %}
+    <a href="{{ project.demo_url }}" target="_blank" class="btn btn-secondary">Demo ↗</a>
+    {% endif %}
+  </div>
+
+  <div class="detail-section">
+    <h2 class="section-label">About</h2>
+    <p class="detail-summary">{{ project.summary }}</p>
+  </div>
+
+  {% if project.team %}
+  <div class="detail-section">
+    <h2 class="section-label">Team — {{ project.team.name }}</h2>
+    <ul class="member-list">
+      {% for m in project.team.members %}
+      <li class="text-secondary">{{ m.email }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="detail-section results-status">
+    {% if event and event.results_published %}
+      <div class="results-published">
+        Results published — score visible to organizer.
+      </div>
+    {% else %}
+      <p class="text-muted">Results will be published when the organizer opens the results window.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
